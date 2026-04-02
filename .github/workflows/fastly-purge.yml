@@ -1,0 +1,17 @@
+name: Fastly Cache Invalidation
+on:
+  push:
+    branches: [ main ] # Runs every time you push to the main branch
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge by Surrogate Key
+        uses: yukukotani/fastly-purge-action@v1
+        with:
+          api-token: ${{ secrets.FASTLY_API_TOKEN }}
+          service-id: ${{ secrets.FASTLY_SERVICE_ID }}
+          target: single-url
+          url: https://demo.jinyean.store/electrozone.html"
+          soft: false
