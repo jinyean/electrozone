@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ElectroZone – Electronics & More</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --yellow: #FFD600;
+    --yellow-dark: #E6C000;
+    --red: #E8192C;
+    --red-dark: #c41122;
+    --black: #111111;
+    --charcoal: #1E1E1E;
+    --dark-grey: #2C2C2C;
+    --mid-grey: #444;
+    --light-grey: #f4f4f4;
+    --white: #ffffff;
+    --text-muted: #888;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+    --font-body: 'Barlow', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--light-grey);
+    color: var(--black);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  img { display: block; max-width: 100%; }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--black);
+    color: #aaa;
+    font-size: 12px;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .topbar a { color: #aaa; }
+  .topbar a:hover { color: var(--yellow); }
+  .topbar-links { display: flex; gap: 16px; }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--yellow);
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 68px;
+  }
+  .logo {
+    font-family: var(--font-display);
+    font-size: 38px;
+    color: var(--black);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .logo span { color: var(--red); }
+
+  .search-bar {
+    flex: 1;
+    display: flex;
+    max-width: 580px;
+  }
+  .search-bar input {
+    flex: 1;
+    height: 40px;
+    border: none;
+    padding: 0 14px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    background: var(--white);
+  }
+  .search-bar button {
+    height: 40px;
+    padding: 0 18px;
+    background: var(--red);
+    color: var(--white);
+    border: none;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0 4px 4px 0;
+    transition: background 0.15s;
+  }
+  .search-bar button:hover { background: var(--red-dark); }
+
+  .header-actions {
+    display: flex;
+    gap: 6px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .hdr-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--black);
+    border: none;
+    background: transparent;
+  }
+  .hdr-btn:hover { background: rgba(0,0,0,0.12); }
+  .hdr-btn svg { width: 22px; height: 22px; }
+  .cart-count {
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 1px 5px;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+  }
+  .hdr-btn-wrap { position: relative; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--charcoal);
+    border-bottom: 3px solid var(--yellow);
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 2px;
+  }
+  .nav-inner a {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #ddd;
+    padding: 10px 14px;
+    display: block;
+    transition: color 0.15s, background 0.15s;
+    white-space: nowrap;
+  }
+  .nav-inner a:hover { color: var(--yellow); background: rgba(255,255,255,0.05); }
+  .nav-inner a.active { color: var(--yellow); }
+  .nav-inner .nav-deals {
+    color: var(--red);
+    font-size: 14px;
+  }
+  .nav-inner .nav-deals:hover { color: #ff4455; }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── HERO BANNER ── */
+  .hero {
+    background: var(--black);
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: stretch;
+    min-height: 320px;
+  }
+  .hero-content {
+    flex: 1;
+    padding: 48px 40px 48px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    z-index: 1;
+  }
+  .hero-badge {
+    background: var(--red);
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 0.95;
+    color: var(--yellow);
+    letter-spacing: 1px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: white;
+    display: block;
+    font-size: 48px;
+  }
+  .hero-sub {
+    color: #aaa;
+    font-size: 15px;
+    max-width: 400px;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: 3px;
+    border: 2px solid #555;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+  .hero-visual {
+    width: 480px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-visual svg {
+    width: 360px;
+    height: 260px;
+  }
+  .hero-price-tag {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+    background: var(--red);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 32px;
+    padding: 12px 18px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(3deg);
+  }
+  .hero-price-tag small {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 2px;
+  }
+
+  /* ── PROMO STRIP ── */
+  .promo-strip {
+    background: var(--red);
+    padding: 10px 20px;
+  }
+  .promo-strip-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .promo-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .promo-item svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.8); }
+
+  /* ── MAIN LAYOUT ── */
+  .main-layout {
+    display: flex;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 24px auto;
+    padding: 0 20px;
+    align-items: flex-start;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+  }
+  .sidebar-section {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .sidebar-title {
+    background: var(--charcoal);
+    color: var(--yellow);
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+  }
+  .sidebar-menu a {
+    display: block;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: var(--charcoal);
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.12s, color 0.12s;
+    font-weight: 500;
+  }
+  .sidebar-menu a:last-child { border-bottom: none; }
+  .sidebar-menu a:hover { background: #fffce6; color: var(--red); }
+  .sidebar-menu a.active { color: var(--red); background: #fffce6; font-weight: 700; }
+  .sidebar-menu .count {
+    float: right;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  /* Filter checkboxes */
+  .filter-group { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; }
+  .filter-group:last-child { border-bottom: none; }
+  .filter-label {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--mid-grey);
+    margin-bottom: 8px;
+  }
+  .filter-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 3px 0;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--charcoal);
+  }
+  .filter-item input[type=checkbox] { accent-color: var(--red); width: 14px; height: 14px; }
+
+  /* ── MAIN CONTENT ── */
+  .main-content { flex: 1; min-width: 0; }
+
+  /* ── CATEGORIES ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    border-bottom: 3px solid var(--yellow);
+    padding-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--charcoal);
+    letter-spacing: 0.5px;
+  }
+  .section-title span { color: var(--red); }
+  .see-all {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.15s;
+  }
+  .see-all:hover { color: var(--red-dark); }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .cat-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 16px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.12s;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--charcoal);
+  }
+  .cat-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .cat-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+    line-height: 1;
+  }
+
+  /* ── DEALS BANNER ── */
+  .deals-banner {
+    background: var(--charcoal);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .deals-banner-text {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .deals-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: var(--yellow);
+    letter-spacing: 0.5px;
+  }
+  .deals-sub {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .countdown {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .count-block {
+    background: var(--red);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 22px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    line-height: 1;
+  }
+  .count-block small {
+    font-family: var(--font-body);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+  }
+  .count-sep {
+    color: var(--yellow);
+    font-family: var(--font-display);
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  /* ── PRODUCT GRID ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .product-card {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .product-card:hover {
+    border-color: var(--yellow);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  }
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--red);
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    z-index: 1;
+  }
+  .product-badge.new { background: #0066cc; }
+  .product-badge.clearance { background: #7B1FA2; }
+  .product-wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    z-index: 1;
+  }
+  .product-wishlist:hover { border-color: var(--red); }
+  .product-wishlist svg { width: 15px; height: 15px; stroke: #999; fill: none; }
+  .product-image {
+    height: 170px;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .product-image svg { width: 120px; height: 120px; }
+  .product-info { padding: 12px 14px 14px; flex: 1; display: flex; flex-direction: column; }
+  .product-brand {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.35;
+    margin-bottom: 8px;
+    flex: 1;
+  }
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 8px;
+  }
+  .stars { color: var(--yellow); font-size: 13px; letter-spacing: 1px; }
+  .rating-count { font-size: 11px; color: var(--text-muted); }
+  .product-price-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .price-block {}
+  .price-was {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .price-now {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--red);
+    line-height: 1;
+  }
+  .price-save {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    color: white;
+    background: var(--red);
+    padding: 2px 6px;
+    border-radius: 2px;
+    margin-top: 2px;
+    display: inline-block;
+  }
+  .product-add-btn {
+    width: 100%;
+    background: var(--yellow);
+    color: var(--black);
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .product-add-btn:hover { background: var(--yellow-dark); transform: translateY(-1px); }
+  .product-add-btn:active { transform: translateY(0); }
+  .product-stock {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .in-stock { color: #2e7d32; }
+  .low-stock { color: #e65100; }
+
+  /* ── FEATURED DEAL ── */
+  .featured-deal {
+    background: var(--charcoal);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+  }
+  .featured-deal-badge {
+    background: var(--red);
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+  .featured-deal h2 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    color: white;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .featured-deal h2 span { color: var(--yellow); }
+  .featured-deal-desc {
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 16px;
+    max-width: 420px;
+  }
+  .featured-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .featured-price-now {
+    font-family: var(--font-display);
+    font-size: 52px;
+    color: var(--yellow);
+    line-height: 1;
+  }
+  .featured-price-old {
+    font-size: 18px;
+    color: #888;
+    text-decoration: line-through;
+    margin-bottom: 8px;
+  }
+  .featured-save {
+    background: var(--red);
+    color: white;
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 14px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    display: inline-block;
+  }
+
+  /* ── BANNER ROW ── */
+  .banner-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .promo-card {
+    border-radius: 4px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .promo-card.dark { background: var(--charcoal); }
+  .promo-card.yellow { background: var(--yellow); }
+  .promo-card-label {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .dark .promo-card-label { color: var(--red); }
+  .yellow .promo-card-label { color: var(--red); }
+  .promo-card h3 {
+    font-family: var(--font-display);
+    font-size: 30px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .dark h3 { color: white; }
+  .yellow h3 { color: var(--black); }
+  .promo-card p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .dark p { color: #aaa; }
+  .yellow p { color: rgba(0,0,0,0.65); }
+
+  /* ── BRAND LOGOS ── */
+  .brand-bar {
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 18px 24px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    justify-content: space-between;
+  }
+  .brand-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: #bbb;
+    letter-spacing: 1px;
+    transition: color 0.15s;
+    cursor: pointer;
+    padding: 4px 12px;
+  }
+  .brand-logo:hover { color: var(--charcoal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    padding: 40px 20px 20px;
+    border-top: 4px solid var(--yellow);
+    margin-top: 20px;
+  }
+  .footer-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+  .footer-brand .logo { font-size: 32px; margin-bottom: 12px; }
+  .footer-brand p { color: #888; font-size: 13px; line-height: 1.6; }
+  .footer-col h4 {
+    font-family: var(--font-condensed);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 14px;
+  }
+  .footer-col a {
+    display: block;
+    color: #888;
+    font-size: 13px;
+    padding: 3px 0;
+    transition: color 0.12s;
+  }
+  .footer-col a:hover { color: white; }
+  .footer-bottom {
+    max-width: 1280px;
+    margin: 0 auto;
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bottom p { color: #666; font-size: 12px; }
+  .footer-payments { display: flex; gap: 8px; }
+  .payment-badge {
+    background: #333;
+    color: #888;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── CART TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--charcoal);
+    color: white;
+    border-left: 4px solid var(--yellow);
+    border-radius: 4px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+    z-index: 200;
+    max-width: 300px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast strong { color: var(--yellow); }
+
+  /* ── TOOLBAR / SORT ── */
+  .products-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+  }
+  .results-count { font-size: 13px; color: var(--text-muted); }
+  .results-count strong { color: var(--charcoal); }
+  .sort-row { display: flex; align-items: center; gap: 10px; }
+  .sort-label { font-size: 13px; color: var(--text-muted); }
+  .sort-select {
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 6px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+    color: var(--charcoal);
+    outline: none;
+  }
+  .sort-select:focus { border-color: var(--yellow); }
+
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-links">
+    <a href="#">Store Finder</a>
+    <a href="#">Track My Order</a>
+    <a href="#">Gift Cards</a>
+    <a href="#">Business</a>
+  </div>
+  <div class="topbar-links">
+    <a href="#">Sign In</a>
+    <a href="#">Create Account</a>
+    <a href="#">Help</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">Electro<span>Zone</span></a>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products, brands and more..." id="searchInput">
+      <button onclick="handleSearch()">Search</button>
+    </div>
+    <div class="header-actions">
+      <button class="hdr-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Account
+      </button>
+      <button class="hdr-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        Wishlist
+      </button>
+      <div class="hdr-btn-wrap">
+        <button class="hdr-btn" onclick="viewCart()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart
+        </button>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-deals">🔥 Today's Deals</a>
+    <a href="#" class="active">TVs</a>
+    <a href="#">Laptops</a>
+    <a href="#">Phones</a>
+    <a href="#">Audio</a>
+    <a href="#">Gaming</a>
+    <a href="#">Cameras</a>
+    <a href="#">Appliances</a>
+    <a href="#">Smart Home</a>
+    <a href="#">Tablets</a>
+    <a href="#">Accessories</a>
+    <a href="#">Clearance</a>
+  </div>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-badge">Limited Time Offer</span>
+      <h1>
+        <em>Samsung OLED</em>
+        65" 4K TV
+      </h1>
+      <p class="hero-sub">Experience cinema-quality picture with Dolby Vision IQ and Object Tracking Sound+</p>
+      <div class="hero-cta">
+        <a href="#products" class="btn-primary">Shop Now</a>
+        <a href="#" class="btn-secondary">View All Deals</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg">
+        <!-- TV body -->
+        <rect x="30" y="30" width="300" height="185" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+        <!-- TV screen -->
+        <rect x="42" y="42" width="276" height="161" rx="3" fill="#0a0a2e"/>
+        <!-- Screen content gradient-like layers -->
+        <rect x="42" y="42" width="276" height="80" rx="3" fill="#0d1b3e" opacity="0.9"/>
+        <rect x="42" y="122" width="276" height="81" rx="3" fill="#1a0a0a" opacity="0.6"/>
+        <!-- Landscape on screen -->
+        <ellipse cx="180" cy="200" rx="140" ry="60" fill="#0a1525" opacity="0.8"/>
+        <rect x="80" y="120" width="200" height="63" fill="url(#skyGrad)" opacity="0.7"/>
+        <!-- Stars -->
+        <circle cx="90" cy="55" r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="150" cy="60" r="1" fill="white" opacity="0.6"/>
+        <circle cx="230" cy="52" r="1.5" fill="white" opacity="0.9"/>
+        <circle cx="290" cy="68" r="1" fill="white" opacity="0.7"/>
+        <circle cx="120" cy="75" r="1" fill="white" opacity="0.5"/>
+        <circle cx="260" cy="55" r="1" fill="white" opacity="0.7"/>
+        <!-- Mountain silhouette -->
+        <polygon points="60,183 110,110 160,183" fill="#0d1b2a"/>
+        <polygon points="140,183 200,90 260,183" fill="#0a1525"/>
+        <polygon points="220,183 280,120 310,183" fill="#0d1b2a"/>
+        <!-- Northern lights / aurora -->
+        <path d="M42 100 Q110 75 180 95 Q250 115 318 85" stroke="#00ff88" stroke-width="2.5" fill="none" opacity="0.5"/>
+        <path d="M42 110 Q120 90 180 108 Q240 126 318 100" stroke="#00ccff" stroke-width="2" fill="none" opacity="0.35"/>
+        <!-- TV stand -->
+        <rect x="155" y="215" width="50" height="12" rx="2" fill="#222"/>
+        <rect x="140" y="225" width="80" height="8" rx="3" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+        <!-- Bezel details -->
+        <circle cx="180" cy="224" r="3" fill="#333"/>
+        <defs>
+          <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#0a0a2e"/>
+            <stop offset="100%" style="stop-color:#1a0a2e"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="hero-price-tag">
+        <small>Was $3,299</small>
+        $1,999
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="promo-strip-inner">
+    <div class="promo-item">
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Free Delivery Over $99
+    </div>
+    <div class="promo-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      2-Year Warranty on All TVs
+    </div>
+    <div class="promo-item">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      250+ Stores Nationwide
+    </div>
+    <div class="promo-item">
+      <svg viewBox="0 0 24 24"><path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+      60-Day Returns
+    </div>
+  </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Categories</div>
+      <nav class="sidebar-menu">
+        <a href="#" class="active">TVs <span class="count">124</span></a>
+        <a href="#">Laptops <span class="count">89</span></a>
+        <a href="#">Smartphones <span class="count">203</span></a>
+        <a href="#">Audio <span class="count">156</span></a>
+        <a href="#">Gaming <span class="count">211</span></a>
+        <a href="#">Cameras <span class="count">67</span></a>
+        <a href="#">Tablets <span class="count">54</span></a>
+        <a href="#">Wearables <span class="count">78</span></a>
+        <a href="#">Appliances <span class="count">145</span></a>
+        <a href="#">Smart Home <span class="count">93</span></a>
+      </nav>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Filter</div>
+      <div class="filter-group">
+        <div class="filter-label">Brand</div>
+        <label class="filter-item"><input type="checkbox" checked> Samsung</label>
+        <label class="filter-item"><input type="checkbox"> Sony</label>
+        <label class="filter-item"><input type="checkbox"> LG</label>
+        <label class="filter-item"><input type="checkbox"> Hisense</label>
+        <label class="filter-item"><input type="checkbox"> TCL</label>
+        <label class="filter-item"><input type="checkbox"> Apple</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Price Range</div>
+        <label class="filter-item"><input type="checkbox"> Under $500</label>
+        <label class="filter-item"><input type="checkbox" checked> $500 – $1,000</label>
+        <label class="filter-item"><input type="checkbox" checked> $1,000 – $2,000</label>
+        <label class="filter-item"><input type="checkbox"> Over $2,000</label>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">On Sale</div>
+        <label class="filter-item"><input type="checkbox" checked> Deals Only</label>
+        <label class="filter-item"><input type="checkbox"> Clearance</label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- CATEGORY TILES -->
+    <div class="section-header">
+      <span class="section-title">Shop by <span>Category</span></span>
+    </div>
+    <div class="category-grid">
+      <div class="cat-card"><span class="cat-icon">📺</span>TVs</div>
+      <div class="cat-card"><span class="cat-icon">💻</span>Laptops</div>
+      <div class="cat-card"><span class="cat-icon">📱</span>Phones</div>
+      <div class="cat-card"><span class="cat-icon">🎧</span>Audio</div>
+      <div class="cat-card"><span class="cat-icon">🎮</span>Gaming</div>
+      <div class="cat-card"><span class="cat-icon">📷</span>Cameras</div>
+    </div>
+
+    <!-- FEATURED DEAL -->
+    <div class="featured-deal">
+      <div>
+        <span class="featured-deal-badge">Deal of the Day</span>
+        <h2>Sony <span>WH-1000XM5</span></h2>
+        <p class="featured-deal-desc">Industry-leading noise cancellation. 30-hour battery. Multipoint Bluetooth connection for up to two devices.</p>
+        <div class="featured-price-row">
+          <div class="featured-price-now">$399</div>
+          <div>
+            <div class="featured-price-old">$649</div>
+            <div class="featured-save">SAVE $250</div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="addToCart('Sony WH-1000XM5', 399)">Add to Cart</button>
+      </div>
+      <div>
+        <svg width="180" height="160" viewBox="0 0 180 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Headphones illustration -->
+          <path d="M30 85 Q30 30 90 30 Q150 30 150 85" stroke="#FFD600" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <!-- Left cup -->
+          <rect x="15" y="80" width="32" height="45" rx="12" fill="#333" stroke="#555" stroke-width="1.5"/>
+          <rect x="20" y="85" width="22" height="35" rx="10" fill="#222"/>
+          <!-- Right cup -->
+          <rect x="133" y="80" width="32" height="45" rx="12" fill="#333" stroke="#555" stroke-width="1.5"/>
+          <rect x="138" y="85" width="22" height="35" rx="10" fill="#222"/>
+          <!-- Shine -->
+          <ellipse cx="31" cy="90" rx="5" ry="8" fill="white" opacity="0.08"/>
+          <ellipse cx="149" cy="90" rx="5" ry="8" fill="white" opacity="0.08"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- DEALS COUNTDOWN -->
+    <div class="deals-banner">
+      <div class="deals-banner-text">
+        <span class="deals-title">Flash Sale</span>
+        <span class="deals-sub">Ends in</span>
+      </div>
+      <div class="countdown">
+        <div class="count-block"><span id="hours">03</span><small>hrs</small></div>
+        <span class="count-sep">:</span>
+        <div class="count-block"><span id="mins">42</span><small>min</small></div>
+        <span class="count-sep">:</span>
+        <div class="count-block"><span id="secs">17</span><small>sec</small></div>
+      </div>
+      <a href="#" class="btn-primary">View Flash Deals</a>
+    </div>
+
+    <!-- PRODUCTS TOOLBAR -->
+    <div id="products" class="products-toolbar">
+      <span class="results-count">Showing <strong>12</strong> of <strong>124</strong> results</span>
+      <div class="sort-row">
+        <span class="sort-label">Sort by:</span>
+        <select class="sort-select">
+          <option>Best Sellers</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest</option>
+          <option>Highest Rated</option>
+          <option>Biggest Savings</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="product-grid">
+
+      <!-- Product 1 -->
+      <div class="product-card">
+        <span class="product-badge">Hot Deal</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="10" width="110" height="68" rx="4" fill="#1a1a1a"/>
+            <rect x="10" y="15" width="100" height="58" rx="2" fill="#0a0a2e"/>
+            <rect x="45" y="78" width="30" height="8" rx="2" fill="#222"/>
+            <rect x="35" y="84" width="50" height="5" rx="2" fill="#1a1a1a"/>
+            <rect x="15" y="20" width="90" height="48" rx="1" fill="#112244"/>
+            <rect x="15" y="20" width="45" height="24" fill="#1a3a6e" opacity="0.7"/>
+            <circle cx="75" cy="32" r="12" fill="#FFD600" opacity="0.15"/>
+            <circle cx="75" cy="32" r="7" fill="#FFD600" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Samsung</div>
+          <div class="product-name">55" 4K QLED Smart TV with Neo Quantum Processor</div>
+          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(324)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $1,499</div>
+              <div class="price-now">$999</div>
+              <span class="price-save">Save $500</span>
+            </div>
+          </div>
+          <div class="product-stock in-stock">✓ In Stock</div>
+          <button class="product-add-btn" onclick="addToCart('Samsung 55\&quot; QLED TV', 999)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card">
+        <span class="product-badge new">New</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="25" y="5" width="70" height="88" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="1.5"/>
+            <rect x="30" y="14" width="60" height="72" rx="5" fill="#0a0a2e"/>
+            <circle cx="60" cy="7" r="3" fill="#333"/>
+            <rect x="45" y="89" width="30" height="4" rx="2" fill="#2a2a2a"/>
+            <rect x="35" y="18" width="50" height="64" rx="3" fill="#001133"/>
+            <circle cx="60" cy="50" r="18" stroke="#FFD600" stroke-width="1.5" fill="none" opacity="0.4"/>
+            <circle cx="60" cy="50" r="10" fill="#FFD600" opacity="0.15"/>
+            <text x="60" y="54" text-anchor="middle" fill="#FFD600" font-size="8" font-family="Arial">15 Pro</text>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">iPhone 15 Pro Max 256GB – Natural Titanium</div>
+          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(891)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $1,899</div>
+              <div class="price-now">$1,699</div>
+              <span class="price-save">Save $200</span>
+            </div>
+          </div>
+          <div class="product-stock in-stock">✓ In Stock</div>
+          <button class="product-add-btn" onclick="addToCart('iPhone 15 Pro Max 256GB', 1699)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card">
+        <span class="product-badge">Flash Sale</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="15" width="100" height="65" rx="6" fill="#2a2a2a"/>
+            <rect x="16" y="21" width="88" height="53" rx="3" fill="#001122"/>
+            <rect x="40" y="80" width="40" height="6" rx="2" fill="#222"/>
+            <rect x="30" y="85" width="60" height="5" rx="2" fill="#1a1a1a"/>
+            <rect x="20" y="25" width="80" height="45" rx="2" fill="#002244"/>
+            <!-- laptop keyboard -->
+            <rect x="12" y="72" width="96" height="1" fill="#444"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">LG</div>
+          <div class="product-name">LG gram 14" Ultra-Lightweight Laptop Intel Core i7</div>
+          <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(156)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $2,199</div>
+              <div class="price-now">$1,499</div>
+              <span class="price-save">Save $700</span>
+            </div>
+          </div>
+          <div class="product-stock in-stock">✓ In Stock</div>
+          <button class="product-add-btn" onclick="addToCart('LG gram 14\&quot; Laptop', 1499)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card">
+        <span class="product-badge clearance">Clearance</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- PS5-like controller -->
+            <path d="M20 45 Q15 35 25 28 L40 25 Q55 20 65 25 L80 28 Q90 35 85 45 L75 75 Q70 85 60 82 Q50 85 45 75 Z" fill="#2a2a2a" stroke="#444" stroke-width="1.5"/>
+            <circle cx="70" cy="42" r="5" fill="#E8192C" opacity="0.8"/>
+            <circle cx="80" cy="52" r="5" fill="#005BBB" opacity="0.8"/>
+            <circle cx="70" cy="62" r="5" fill="#008000" opacity="0.8"/>
+            <circle cx="60" cy="52" r="5" fill="#FFD600" opacity="0.9"/>
+            <rect x="30" y="38" width="18" height="14" rx="4" fill="#1a1a1a"/>
+            <circle cx="34" cy="42" r="4" fill="#333"/>
+            <circle cx="44" cy="48" r="4" fill="#333"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Sony</div>
+          <div class="product-name">PlayStation 5 DualSense Wireless Controller – White</div>
+          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(2,104)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $119</div>
+              <div class="price-now">$79</div>
+              <span class="price-save">Save $40</span>
+            </div>
+          </div>
+          <div class="product-stock low-stock">⚠ Only 3 left!</div>
+          <button class="product-add-btn" onclick="addToCart('PS5 DualSense Controller', 79)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card">
+        <span class="product-badge">Hot Deal</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Earbuds case -->
+            <rect x="30" y="20" width="60" height="65" rx="22" fill="#2a2a2a" stroke="#444" stroke-width="1.5"/>
+            <rect x="35" y="28" width="50" height="55" rx="19" fill="#1a1a1a"/>
+            <!-- Left bud -->
+            <circle cx="50" cy="52" r="12" fill="#333" stroke="#555" stroke-width="1"/>
+            <circle cx="50" cy="52" r="7" fill="#222"/>
+            <circle cx="52" cy="50" r="2.5" fill="#444"/>
+            <!-- Right bud -->
+            <circle cx="70" cy="52" r="12" fill="#333" stroke="#555" stroke-width="1"/>
+            <circle cx="70" cy="52" r="7" fill="#222"/>
+            <circle cx="72" cy="50" r="2.5" fill="#444"/>
+            <!-- Hinge -->
+            <rect x="55" y="78" width="10" height="3" rx="1.5" fill="#444"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Apple</div>
+          <div class="product-name">AirPods Pro (2nd Gen) with Active Noise Cancellation</div>
+          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-count">(3,412)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $399</div>
+              <div class="price-now">$319</div>
+              <span class="price-save">Save $80</span>
+            </div>
+          </div>
+          <div class="product-stock in-stock">✓ In Stock</div>
+          <button class="product-add-btn" onclick="addToCart('AirPods Pro 2nd Gen', 319)">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card">
+        <span class="product-badge">Bundle Deal</span>
+        <span class="product-wishlist"><svg viewBox="0 0 24 24" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span>
+        <div class="product-image">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <!-- Smart speaker -->
+            <ellipse cx="60" cy="82" rx="30" ry="8" fill="#1a1a1a"/>
+            <rect x="30" y="25" width="60" height="58" rx="15" fill="#333" stroke="#444" stroke-width="1.5"/>
+            <!-- Fabric lines -->
+            <line x1="35" y1="35" x2="35" y2="75" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="43" y1="30" x2="43" y2="80" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="51" y1="27" x2="51" y2="82" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="59" y1="26" x2="59" y2="82" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="67" y1="27" x2="67" y2="82" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="75" y1="30" x2="75" y2="80" stroke="#2a2a2a" stroke-width="1.5"/>
+            <line x1="83" y1="35" x2="83" y2="75" stroke="#2a2a2a" stroke-width="1.5"/>
+            <!-- Top glow ring -->
+            <ellipse cx="60" cy="27" rx="25" ry="6" fill="none" stroke="#FFD600" stroke-width="2" opacity="0.5"/>
+            <ellipse cx="60" cy="27" rx="18" ry="4" fill="#FFD600" opacity="0.1"/>
+          </svg>
+        </div>
+        <div class="product-info">
+          <div class="product-brand">Amazon</div>
+          <div class="product-name">Echo Studio High-Fidelity Smart Speaker with Dolby Atmos</div>
+          <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-count">(789)</span></div>
+          <div class="product-price-row">
+            <div class="price-block">
+              <div class="price-was">Was $329</div>
+              <div class="price-now">$249</div>
+              <span class="price-save">Save $80</span>
+            </div>
+          </div>
+          <div class="product-stock in-stock">✓ In Stock</div>
+          <button class="product-add-btn" onclick="addToCart('Amazon Echo Studio', 249)">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PROMO BANNERS -->
+    <div class="section-header">
+      <span class="section-title">Special <span>Offers</span></span>
+    </div>
+    <div class="banner-row">
+      <div class="promo-card dark">
+        <span class="promo-card-label">Gaming Week</span>
+        <h3>Up to 40% off<br>All Gaming Gear</h3>
+        <p>PlayStation, Xbox, Nintendo, PC Gaming and more</p>
+        <a href="#" class="btn-primary">Shop Gaming</a>
+      </div>
+      <div class="promo-card yellow">
+        <span class="promo-card-label">Back to School</span>
+        <h3>Laptops from<br>$599</h3>
+        <p>Top brands: Apple, Dell, HP, Lenovo, Asus & more</p>
+        <a href="#" class="btn-primary">Shop Laptops</a>
+      </div>
+    </div>
+
+    <!-- BRAND LOGOS -->
+    <div class="brand-bar">
+      <div class="brand-logo">SAMSUNG</div>
+      <div class="brand-logo">APPLE</div>
+      <div class="brand-logo">SONY</div>
+      <div class="brand-logo">LG</div>
+      <div class="brand-logo">BOSE</div>
+      <div class="brand-logo">DELL</div>
+      <div class="brand-logo">ASUS</div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Electro<span>Zone</span></div>
+      <p>Australia's best deals on electronics, TVs, laptops, phones, gaming, audio, and home appliances. 250+ stores nationwide.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Help & Support</h4>
+      <a href="#">Track My Order</a>
+      <a href="#">Returns & Refunds</a>
+      <a href="#">Warranty Info</a>
+      <a href="#">Contact Us</a>
+      <a href="#">FAQs</a>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#">Click & Collect</a>
+      <a href="#">Installation</a>
+      <a href="#">Recycling</a>
+      <a href="#">Business Sales</a>
+      <a href="#">Gift Cards</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Careers</a>
+      <a href="#">Store Finder</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 ElectroZone Pty Ltd. ABN 12 345 678 901. All prices in AUD and include GST.</p>
+    <div class="footer-payments">
+      <span class="payment-badge">Visa</span>
+      <span class="payment-badge">Mastercard</span>
+      <span class="payment-badge">Amex</span>
+      <span class="payment-badge">PayPal</span>
+      <span class="payment-badge">Afterpay</span>
+      <span class="payment-badge">Zip</span>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  let cartCount = 0;
+
+  function addToCart(name, price) {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+    const toast = document.getElementById('toast');
+    toast.innerHTML = `<strong>${name}</strong> added to cart — $${price.toLocaleString()}`;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  function viewCart() {
+    const toast = document.getElementById('toast');
+    if (cartCount === 0) {
+      toast.innerHTML = 'Your cart is empty. Start shopping!';
+    } else {
+      toast.innerHTML = `You have <strong>${cartCount} item${cartCount > 1 ? 's' : ''}</strong> in your cart`;
+    }
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  function handleSearch() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (q) {
+      const toast = document.getElementById('toast');
+      toast.innerHTML = `Searching for <strong>${q}</strong>...`;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleSearch();
+  });
+
+  // Countdown timer
+  function startCountdown(h, m, s) {
+    let total = h * 3600 + m * 60 + s;
+    setInterval(() => {
+      if (total <= 0) return;
+      total--;
+      const hh = Math.floor(total / 3600);
+      const mm = Math.floor((total % 3600) / 60);
+      const ss = total % 60;
+      document.getElementById('hours').textContent = String(hh).padStart(2, '0');
+      document.getElementById('mins').textContent = String(mm).padStart(2, '0');
+      document.getElementById('secs').textContent = String(ss).padStart(2, '0');
+    }, 1000);
+  }
+  startCountdown(3, 42, 17);
+</script>
+
+</body>
+</html>
